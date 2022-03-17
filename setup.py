@@ -5,9 +5,9 @@ import os
 import py2exe
 
 NAME = 'gluqlo'
-NAMEPY = NAME+'.py'
-NAMEEXE = NAME+'.exe'
-NAMESCR = NAME+'.scr'
+NAMEPY = f'{NAME}.py'
+NAMEEXE = f'{NAME}.exe'
+NAMESCR = f'{NAME}.scr'
 
 
 setup(data_files=[

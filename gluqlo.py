@@ -239,13 +239,12 @@ class Gluqlo:
         current = pygame.time.get_ticks()
 
         frame = 99
-        if self.start is None:
-            if b!=self.past_m:
-                # start animation
-                self.start = current
-                self.end = current+DURATION
+        if self.start is None and b != self.past_m:
+            # start animation
+            self.start = current
+            self.end = current+DURATION
 
-        if not(self.start is None):
+        if self.start is not None:
             if current>self.end:
                 # current = self.end  # unnecessary
                 self.end = self.start = None
@@ -283,13 +282,13 @@ class Gluqlo:
                 done = event.type in (pygame.KEYDOWN, pygame.K_ESCAPE, pygame.QUIT)
 
 def get_bool(name, default):
-    QUOTES = '"', "'"
     if name in os.environ:
         value = os.environ.get(name, str(default)).lower()
+        QUOTES = '"', "'"
         if value[0] in QUOTES:
-            value = value[1:] 
+            value = value[1:]
         if value[-1] in QUOTES:
-            value = value[:-1] 
+            value = value[:-1]
         return value in ('y', 'yes', 's', 'si','true', 't', '1')
     return default
 

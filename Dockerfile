@@ -40,8 +40,8 @@ RUN apt-get update && \
 # ---
 # Copy Container Setup Scripts
 # ---
-# COPY poetry.lock /usr/local/poetry.lock
-# COPY pyproject.toml /usr/local/pyproject.toml
+COPY poetry.lock /usr/local/poetry.lock
+COPY pyproject.toml /usr/local/pyproject.toml
 
 # Create the "home" folder
 RUN mkdir -p $HOME

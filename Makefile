@@ -23,7 +23,7 @@ APP_IMAGE_TAG=$(shell git ls-files -s Dockerfile | awk '{print $$2}' | cut -c1-1
 
 ## Build container locally
 build:
-	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${DOCKER_TAG})
+	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${APP_IMAGE_TAG})
 
 	@echo "Building docker image ${DOCKER_IMAGE_TAG}"
 	docker build --build-arg BUILD_DATE=${BUILD_DATE} \

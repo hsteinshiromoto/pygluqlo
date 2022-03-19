@@ -47,6 +47,8 @@ COPY pyproject.toml /usr/local/pyproject.toml
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
+COPY . $HOME
+
 # Get poetry
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
@@ -56,3 +58,4 @@ RUN poetry config virtualenvs.create false \
     && cd /usr/local \
     && poetry install --no-interaction --no-ansi
 
+CMD ["python3", "gluqlo.py"]

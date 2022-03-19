@@ -44,7 +44,7 @@ make_variables() {
     PROJECT_ROOT=$(pwd)
     DOCKER_USER=vscode
 
-    DOCKER_IMAGE=docker.pkg.github.com/hsteinshiromoto/docker.datascience/datascience
+    DOCKER_IMAGE=hsteinshiromoto/pygluqlo
     DOCKER_TAG=${DOCKER_TAG:-latest}
     DOCKER_IMAGE_TAG=${DOCKER_IMAGE}:${DOCKER_TAG}
 
@@ -61,10 +61,13 @@ run_container() {
     make_variables
     get_container_id
 
+    # allow access from localhost
+    xhost + 127.0.0.1
+
     if [[ -z "${CONTAINER_ID}" ]]; then
         echo "Creating Container from image ${DOCKER_IMAGE_TAG} ..."
 
-        docker run -d -P -v $(pwd):/home/${DOCKER_USER} -e uid=$UID -e -gid=$GID -t ${DOCKER_IMAGE_TAG} $1 >/dev/null >&1
+        docker run -P -e DISPLAY=host.docker.internal:0 -t ${DOCKER_IMAGE_TAG} $1 >/dev/null >&1
 
         sleep 2
         get_container_id
@@ -75,15 +78,6 @@ run_container() {
 
     sleep 5
 
-    JUPYTER_PORT=$(docker ps -f "ancestor=${DOCKER_IMAGE_TAG}" | grep -o "0.0.0.0:[0-9]*->8888" | cut -d ":" -f 2 | head -n 1)
-
-    echo -e "Port mapping: ${JUPYTER_PORT}"
-
-    JUPYTER_TOKEN=$(docker exec -u ${DOCKER_USER} -i ${CONTAINER_ID} sh -c "jupyter lab list" | tac | grep -o "token=[a-z0-9]*" | sed -n 1p | cut -d "=" -f 2)
-    echo -e "Jupyter token: ${GREEN}${JUPYTER_TOKEN}${NC}"
-
-    JUPYTER_ADDRESS=$(docker ps | grep ${DOCKER_IMAGE_TAG} | grep -o "0.0.0.0:[0-9]*")
-    echo -e "Jupyter Address: ${BLUE}http://${JUPYTER_ADDRESS}/?token=${JUPYTER_TOKEN}${NC}"
 }
 
 enter_container() {

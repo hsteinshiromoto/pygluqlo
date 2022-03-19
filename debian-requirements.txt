@@ -3,3 +3,4 @@ curl
 git
 gnupg2
 make
+python3-pygame

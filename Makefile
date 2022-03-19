@@ -31,6 +31,12 @@ build:
 				-t ${DOCKER_IMAGE_TAG} .
 	@echo "Done"
 
+tag_latest:
+	$(eval DOCKER_IMAGE_TAG=${DOCKER_IMAGE_NAME}:${APP_IMAGE_TAG})
+	docker tag ${DOCKER_IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest	
+
+
+build_local: builg tag_latest
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################

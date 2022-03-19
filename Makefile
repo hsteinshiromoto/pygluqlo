@@ -36,7 +36,7 @@ tag_latest:
 	docker tag ${DOCKER_IMAGE_TAG} ${DOCKER_IMAGE_NAME}:latest	
 
 
-build_local: builg tag_latest
+build_local: build tag_latest
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################

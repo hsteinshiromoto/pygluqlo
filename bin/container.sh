@@ -61,6 +61,9 @@ run_container() {
     make_variables
     get_container_id
 
+    # References:
+    # [1] https://medium.com/@mreichelt/how-to-show-x11-windows-within-docker-on-mac-50759f4b65cb
+
     # allow access from localhost
     xhost + 127.0.0.1
 

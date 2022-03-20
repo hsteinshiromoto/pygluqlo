@@ -1,17 +1,13 @@
 from __future__ import print_function
-# yet incomplete translation of: https://github.com/alexanderk23/gluqlo
-from datetime import datetime
+
 import math
 import os
 import sys
+# yet incomplete translation of: https://github.com/alexanderk23/gluqlo
+from datetime import datetime
 from pathlib import Path
 
 import pygame
-
-# try:
-#     _dir = os.path.dirname(os.path.abspath(__file__))
-# except:  ## __file__ doesn't exists in py2exe context
-#     _dir = os.path.dirname(os.path.abspath(sys.executable))
 
 _dir = Path(__file__).resolve().parent
 

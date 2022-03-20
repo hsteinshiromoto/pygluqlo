@@ -108,7 +108,7 @@ class Gluqlo:
         self.width, self.height = self.screen.get_width(), self.screen.get_height()
         self.clock = pygame.time.Clock()
 
-        font_filename = os.path.join(_dir, 'gluqlo.ttf')
+        font_filename = os.path.join(_dir, 'texgyreheros-regular.otf')
         self.font_time = pygame.font.Font(font_filename, int(self.height / 1.68))
 
     def __init__(self):

@@ -5,6 +5,7 @@
 ## Folders ##
 .local/
 .jupyter/
+TeX-Gyre-Heros/*
 
 ## Files ##
 .bash_history

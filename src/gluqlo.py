@@ -4,14 +4,16 @@ from datetime import datetime
 import math
 import os
 import sys
+from pathlib import Path
 
 import pygame
 
-try:
-    _dir = os.path.dirname(os.path.abspath(__file__))
-except:  ## __file__ doesn't exists in py2exe context
-    _dir = os.path.dirname(os.path.abspath(sys.executable))
+# try:
+#     _dir = os.path.dirname(os.path.abspath(__file__))
+# except:  ## __file__ doesn't exists in py2exe context
+#     _dir = os.path.dirname(os.path.abspath(sys.executable))
 
+_dir = Path(__file__).resolve().parent
 
 FONT_COLOR = 0xb7, 0xb7, 0xb7
 BACKGROUND_COLOR = 0x0f, 0x0f, 0x0f

@@ -2,3 +2,4 @@ __pycache__/*
 .devcontainer/*
 .pytest_cache/*
 bin/*
+TeX-Gyre-Heros/*

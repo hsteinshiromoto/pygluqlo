@@ -58,4 +58,4 @@ RUN poetry config virtualenvs.create false \
     && cd /usr/local \
     && poetry install --no-interaction --no-ansi
 
-CMD ["python3", "src/gluqlo.py"]
+CMD ["poetry", "run", "python", "src/gluqlo.py"]

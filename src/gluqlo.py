@@ -323,17 +323,21 @@ def get_bool(name, default):
     return default
 
 
-def to_int(name, default=None):
-    if name in os.environ:
-        value = os.environ.get(name, str(default))
-        try:
-            return int(value)
+def to_int(name: str, default: int) -> int:
+    """Converts a string to an integer.
 
-        except Exception:
-            exc_info = sys.exc_info()
-            traceback.print_exception(*exc_info)
+    Args:
+        name (str): Variable to be converted to int.
+        default (int): Alternative vaue to return if conversion fails.
 
-    return default
+    Returns:
+        int: Converted variable.
+    """
+    try:
+        return int(os.environ.get(name))
+
+    except TypeError as e:
+        return default
 
 
 if __name__ == "__main__":

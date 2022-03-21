@@ -3,6 +3,7 @@ from __future__ import print_function
 import math
 import os
 import sys
+import traceback
 
 # yet incomplete translation of: https://github.com/alexanderk23/gluqlo
 from datetime import datetime
@@ -322,13 +323,16 @@ def get_bool(name, default):
     return default
 
 
-def get_int(name, default=None):
+def to_int(name, default=None):
     if name in os.environ:
         value = os.environ.get(name, str(default))
         try:
             return int(value)
-        except:
-            print("Cannot interpret:", value, "as integer!")
+
+        except Exception:
+            exc_info = sys.exc_info()
+            traceback.print_exception(*exc_info)
+
     return default
 
 
@@ -338,8 +342,8 @@ if __name__ == "__main__":
     _DURATION = "DURATION"
     _ANIMATE = "ANIMATE"
 
-    TARGET_FPS = get_int(_TARGET_FPS, get_int(_FPS, default=TARGET_FPS))
-    DURATION = get_int(_DURATION, default=DURATION)
+    TARGET_FPS = to_int(_TARGET_FPS, to_int(_FPS, default=TARGET_FPS))
+    DURATION = to_int(_DURATION, default=DURATION)
     DEBUG = get_bool(_DEBUG, DEBUG)
     ANIMATE = get_bool(_ANIMATE, ANIMATE)
 
